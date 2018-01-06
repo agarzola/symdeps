@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Symlink your front-end dependencies where they’re useful during development: `public/`, `web/libraries/`, `/var/www/`, whatever.",
   "main": "index.js",
+  "bin": "./bin/cli",
   "scripts": {
     "test": "mocha ./**/*.test.js"
   },
