@@ -1,0 +1,21 @@
+{
+  "name": "symdeps",
+  "version": "0.0.1",
+  "description": "Symlink your front-end dependencies where they’re useful during development: `public/`, `web/libraries/`, `/var/www/`, whatever.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./**/*.test.js"
+  },
+  "author": {
+    "name": "Alfonso Gómez-Arzola",
+    "email": "alfonso@chromatichq.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "proxyquire": "^1.8.0",
+    "sinon": "^4.1.3",
+    "sinon-chai": "^2.14.0"
+  }
+}
