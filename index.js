@@ -11,12 +11,13 @@ module.exports = () => {
   }
 
   try {
-    const package_json = JSON.parse(package_file)
+    var package_json = JSON.parse(package_file)
   }
   catch (error) {
     // If package.json cannot be parsed, something’s terribly wrong.
     console.error(error)
     process.exit(1)
+    return
   }
 
   const config = package_json.symdeps
