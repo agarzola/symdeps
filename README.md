@@ -87,3 +87,7 @@ that you want hard copies instead of symbolic links one of two ways: passing a
 `--hard-copy` flag to the command or setting `"hard-copy": true` in your
 `symdeps` config. If either one of these is set, dependencies should be copied
 instead of linked.
+- **Create relative links.** The ability to generate symbolic links whose
+target paths are relative to the location of the link instead of absolute. This
+is useful in the creation of deployment artifacts or when otherwise moving the
+application root somewhere.
