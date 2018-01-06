@@ -33,7 +33,7 @@ and invoke `symdeps` from an npm script, like `postinstall`:
 ```javascript
 // package.json
 "scripts": {
-  "postinstall": "symlinks"
+  "postinstall": "symdeps"
 }
 ```
 
