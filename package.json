@@ -1,6 +1,6 @@
 {
   "name": "symdeps",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Symlink your front-end dependencies where they’re useful during development: `public/`, `web/libraries/`, `/var/www/`, whatever.",
   "main": "index.js",
   "bin": "./bin/cli",
