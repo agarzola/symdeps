@@ -46,6 +46,12 @@ public/js/vendor/jquery
 public/js/vendor/mediaelement
 ```
 
+### Naïve behavior
+`symdeps` will create any directories that don’t already exist along the base
+path (`public/js/vendor` in the example above). Also note that if the
+destination already exists (whether it be a file, symlink, or directory) it
+will be replaced with the symlink.
+
 ### Linking files directly
 You can target individual files quite simply like so:
 ```javascript
