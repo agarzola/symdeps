@@ -1,8 +1,8 @@
 # symdeps
 Manage where your dependencies should live from `package.json`. With `symdeps`,
 your dependencies are automatically symlinked according to configuration,
-eliminating the need for extra code that just moves files around. Need
-dependency files to be copied instead? That’s cool too.
+eliminating the need for extra code that just moves files around. Need hard
+links? That’s cool too.
 
 ### Hang on. My task runner already does this.
 If your task runner’s only role in your workflow is to move files around, you’re
@@ -81,12 +81,16 @@ in the package name). So adding `@project/library` to the path array in the
 examples above would result in a symlink at:
 `project_root/public/js/vendor/library`.
 
+### Using hard links
+Depending on your workflow, you might want to use hard links instead of
+symbolic links. This is particularly useful if your deployment process does not
+install dependencies on the remote (you might push a built artifact, for
+example), or if you want to track front-end dependencies in version control but
+don’t want to track everything in `node_modules`. You can make `symdeps` create
+hard links by setting `"hard": true` in your `package.json`’s symdeps config,
+or by using the `--hard` flag from the command line.
+
 ### Roadmap
-- **Create hard copies instead of symbolic links.** The ability to indicate
-that you want hard copies instead of symbolic links one of two ways: passing a
-`--hard-copy` flag to the command or setting `"hard-copy": true` in your
-`symdeps` config. If either one of these is set, dependencies should be copied
-instead of linked.
 - **Create relative links.** The ability to generate symbolic links whose
 target paths are relative to the location of the link instead of absolute. This
 is useful in the creation of deployment artifacts or when otherwise moving the
