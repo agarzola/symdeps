@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/agarzola/symdeps/issues"
   },
-  "homepage": "https://github.com/agarzola/symdeps#readme"
+  "homepage": "https://github.com/agarzola/symdeps#readme",
+  "engines": {
+    "node": ">=4"
+  }
 }
