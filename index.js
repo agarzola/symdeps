@@ -27,7 +27,8 @@ module.exports = () => {
     return
   }
 
-  config.hard = config.hard || process.argv.indexOf('--hard') > - 1
+  config.hard = config.hard || process.argv.indexOf('--hard') > -1
+  config.relative = config.relative || process.argv.indexOf('--relative') > -1
 
   symdeps(config)
 }
