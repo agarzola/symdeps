@@ -18,6 +18,49 @@ To install `symdeps`, run:
 npm install --save-dev symdeps
 ```
 
+<details>
+<summary><strong>Upgrading from <code>v0.2.x</code> to <code>v1.x.x</code></strong></summary>
+
+The switch from `v0.2.x` to `v1.0.0` or later _should_ be seamless for most
+workflows, but there is one fundamental difference in the way this library
+operates, so a new major version was created to be safe. `v0.2.2` and below
+created symlinks using absolute paths (that is, paths relative to the root of
+your environment).  For example, a symlink created at:
+
+```
+/Users/testy-mctestface/projects/project-name/js/build/libs/dependency.min.js
+```
+
+might point to:
+
+```
+/Users/testy-mctestface/projects/project-name/node_modules/dependency-name/dist/dependency.min.js
+```
+
+Starting with `v1.0.0`, `symdeps` uses paths relative to the symlink’s parent
+directory. This means that the sample link described above would get the
+following path to the source file instead of an absolute path:
+
+```
+../../../node_modules/dependency-name/dist/dependency.min.js
+```
+
+This is a more nimble implementation because symlinks created in one context
+(say, directly in your local environment) will still be valid in a different
+context (say, a docker container running on your machine, as is the case when
+using something like [Lando](https://lando.dev)). They also work if you move
+the project location or if you deploy an artifact to a remote environment where
+you don’t want to run npm commands.
+
+Chances are you won’t run into issues when upgrading to `v1.0.0` or later, but
+if you do, it’s probably because your project has a dependency on these paths
+being absolute. In that case, try [using the absolute option](#using-absolute-paths)
+in your `symdeps` config and you should be fine.
+
+Please feel free to [open a ticket](https://github.com/agarzola/symdeps/issues/new)
+if you’re still running into issues with this upgrade.
+</details>
+
 ## Usage
 Add something like this to your `package.json`:
 ```javascript
@@ -81,20 +124,21 @@ in the package name). So adding `@project/library` to the path array in the
 examples above would result in a symlink at:
 `project_root/public/js/vendor/library`.
 
-### Using relative links
-This library can generate symbolic links using relative source paths that are
-relative to the location of the link instead of absolute (which is the
-default). This is useful in the creation of deployment artifacts, when using
-container environments where the symlinks may be created outside the container,
-or when otherwise moving the application root somewhere. You can make `symdeps`
-use relative paths by setting `"relative": true` in your `package.json`’s
-symdeps config, or by using the `--relative` flag from the command line.
+### Using absolute paths
+This library can generate symbolic links using absolute source paths (i.e.
+relative to the root of your machine) instead of relative to the symlink’s
+parent directory (which is the default starting with `v1.0.0`). This might be
+useful in some contexts where the symlink might need to be moved or duplicated
+by a process after the initial symlink is created. In such cases, you can make
+`symdeps` use absolute paths by setting `"absolute": true` in your
+`package.json`’s symdeps config, or by using the `--absolute` flag from the
+command line.
 
-### Using hard links
-Depending on your workflow, you might want to use hard links instead of
+### Creating hard links
+Depending on your workflow, you might want to create hard links instead of
 symbolic links. This is particularly useful if your deployment process does not
-install dependencies on the remote (you might push a built artifact, for
-example), or if you want to track front-end dependencies in version control but
-don’t want to track everything in `node_modules`. You can make `symdeps` create
-hard links by setting `"hard": true` in your `package.json`’s symdeps config,
-or by using the `--hard` flag from the command line.
+install dependencies on the remote (e.g. you might push an already built
+artifact), or if you want to track front-end dependencies in version control
+but don’t want to track everything in `node_modules`. You can make `symdeps`
+create hard links by setting `"hard": true` in your `package.json`’s symdeps
+config, or by using the `--hard` flag from the command line.
