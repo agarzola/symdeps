@@ -6,10 +6,9 @@ links? That’s cool too.
 
 ### Hang on. My task runner already does this.
 If your task runner’s only role in your workflow is to move files around, you’re
-essentially using a [Jaeger](https://pacificrim.wikia.com/wiki/Jaeger "But when
-you’re in a Jaeger, suddenly, you can fight the hurricane.") to pick up a
-pebble. If you use a task runner to do more than just that, consider whether
-defining a non-standard location for your dependencies should be done in your
+essentially using a [D11 bulldozer](https://en.wikipedia.org/wiki/Caterpillar_D11)
+to move a bucket of dirt. If you use a task runner to do more than just that,
+consider whether declaring where your dependencies live should be done in your
 task runner config or in your package manager config.
 
 ## Installation
