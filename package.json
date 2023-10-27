@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/agarzola/symdeps#readme",
   "engines": {
-    "node": ">=4"
+    "node": ">=18 <21"
   },
   "pre-push": [
     "test",
