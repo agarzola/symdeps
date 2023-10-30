@@ -1,6 +1,6 @@
 {
   "name": "symdeps",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Manage where your dependencies should live from package.json.",
   "main": "index.js",
   "bin": {
